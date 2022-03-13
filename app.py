@@ -41,7 +41,7 @@ columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
 
 #DATA_______________________________________________________________________________________
 # sqllite database connection
-engine = create_engine(SQLALQUEMY_DATABASE_URI).connect()
+engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 
 # table  will be returned as a dataframe.
 df = pd.read_sql_table('data_val', engine)
