@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import os
+import re
 from sqlalchemy import create_engine
 import pandas as pd
 from pickle import load
@@ -20,6 +21,12 @@ if os.environ.get('DATABASE_URL') is None:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
 else:
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    #SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # or other relevant config var
+
+#Compatibility 
+#https://help.heroku.com/ZKNTJQSK/why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres
+if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
     
 # columns (from feature selection)
 columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
