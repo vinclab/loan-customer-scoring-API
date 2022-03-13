@@ -15,13 +15,11 @@ app = Flask(__name__)
 
 #CONFIG_____________________________________________________________________________________
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
-
-# # DATABASE_URL
-# if os.environ.get('DATABASE_URL') is None:
-#     SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
-# else:
-#     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+# DATABASE_URL
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     
 # columns (from feature selection)
 columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
