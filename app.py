@@ -61,8 +61,8 @@ df = pd.read_sql_table('data_val'.lower(), engine)
 # load the prediction model
 
 if os.environ.get('DATABASE_URL') is None:
-pipeline = load(open('static\\tmp\\pipeline_scoring.pkl', 'rb'))
-explainer = load(open('static\\tmp\\pipeline_explainer.pkl', 'rb'))
+    pipeline = load(open('static\\tmp\\pipeline_scoring.pkl', 'rb'))
+    explainer = load(open('static\\tmp\\pipeline_explainer.pkl', 'rb'))
 else:
     pipeline = load(open('/static/tmp/pipeline_scoring.pkl', 'rb'))
     explainer = load(open('/static/tmp/pipeline_explainer.pkl', 'rb'))
