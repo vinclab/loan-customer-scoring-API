@@ -64,8 +64,8 @@ if os.environ.get('DATABASE_URL') is None:
     pipeline = load(open('static\\tmp\\pipeline_scoring.pkl', 'rb'))
     explainer = load(open('static\\tmp\\pipeline_explainer.pkl', 'rb'))
 else:
-    pipeline = load(open('/static/tmp/pipeline_scoring.pkl', 'rb'))
-    explainer = load(open('/static/tmp/pipeline_explainer.pkl', 'rb'))
+    pipeline = load(open('pipeline_scoring.pkl', 'rb'))
+    explainer = load(open('pipeline_explainer.pkl', 'rb'))
 
 #___________________________________________________________________________________________
 
