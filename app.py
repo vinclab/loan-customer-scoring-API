@@ -24,26 +24,12 @@ if os.environ.get('DATABASE_URL') is None:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
 else:
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-    #SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # or other relevant config var
 
 #Compatibility 
 #https://help.heroku.com/ZKNTJQSK/why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres
 if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
     
-# columns (from feature selection)
-# columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
-# 'EXT_SOURCE_3', 'AMT_ANNUITY', 'ANNUITY_INCOME_PERC', 'DAYS_ID_PUBLISH',
-# 'AMT_GOODS_PRICE', 'AMT_CREDIT', 'DAYS_REGISTRATION',
-# 'INSTAL_DAYS_ENTRY_PAYMENT_MAX', 'PREV_CNT_PAYMENT_MEAN',
-# 'DAYS_LAST_PHONE_CHANGE', 'DAYS_EMPLOYED_PERC', 'BURO_DAYS_CREDIT_MAX',
-# 'INSTAL_AMT_PAYMENT_SUM', 'INCOME_CREDIT_PERC',
-# 'INSTAL_AMT_PAYMENT_MIN', 'ACTIVE_DAYS_CREDIT_ENDDATE_MIN',
-# 'CLOSED_DAYS_CREDIT_MAX', 'BURO_DAYS_CREDIT_ENDDATE_MAX',
-# 'APPROVED_DAYS_DECISION_MAX', 'INSTAL_DBD_SUM', 'INSTAL_DBD_MAX',
-# 'INSTAL_DAYS_ENTRY_PAYMENT_MEAN', 'BURO_AMT_CREDIT_SUM_MAX',
-# 'INSTAL_AMT_PAYMENT_MAX', 'INSTAL_AMT_INSTALMENT_MAX',
-# 'INSTAL_DAYS_ENTRY_PAYMENT_SUM', 'PREV_AMT_ANNUITY_MEAN']
 
 columns_lst = ['sk_id_curr', 'payment_rate', 'ext_source_2', 'days_birth', 'ext_source_3', 'amt_annuity',
 'annuity_income_perc', 'days_id_publish', 'amt_goods_price', 'amt_credit', 'days_registration',
@@ -260,15 +246,6 @@ def result_all():
     notifications = data['notifications']
 
     return render_template('result_all.html', description=notifications)
-
-# @app.route('/shap/')
-# def result_shap():
-#     if 'id' in request.args:
-#         id = int(request.args.get('id'))
-#         shap_html = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}')
-
-#         return render_template('result_shap.html', shap_plot=shap_html)
-
 #___________________________________________________________________________________________
 
 #RUN________________________________________________________________________________________
