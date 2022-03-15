@@ -86,17 +86,17 @@ def fig2img(fig):
 def row_data(df_, number_list_):
 
     if len(number_list_)>1:
-        df_row = df_[df_['SK_ID_CURR'].isin(number_list_)]
+        df_row = df_[df_['sk_id_curr'].isin(number_list_)]
     else:
         id = number_list_[0]
-        df_row = df_[df_['SK_ID_CURR']==id]
+        df_row = df_[df_['sk_id_curr']==id]
 
     return df_row
 
 def prediction(pipeline_, df_row_):
     df_row_copy = df_row_.copy()
     # Matching the features
-    df_row_copy.drop(['SK_ID_CURR'], axis=1, inplace=True)
+    df_row_copy.drop(['sk_id_curr'], axis=1, inplace=True)
     # model prediction
     valid_probas = pipeline_.predict_proba(df_row_copy)[:, 1]
     # Post prediction
@@ -112,14 +112,14 @@ def sample(df_val_, id_):
     df_val_sample = df_val_.sample(frac=0.01, replace=False, random_state=1)
 
     # check if the customer is in the sample
-    check = df_val_sample['SK_ID_CURR']==id_
+    check = df_val_sample['sk_id_curr']==id_
     check = check.value_counts()
     if len(check)==1:
-        df_customer = df_val_[df_val_['SK_ID_CURR']==id_]
+        df_customer = df_val_[df_val_['sk_id_curr']==id_]
         
         df_val_sample = pd.concat([df_customer, df_val_sample])
 
-    df_val_sample.set_index('SK_ID_CURR', inplace=True)
+    df_val_sample.set_index('sk_id_curr', inplace=True)
 
     return df_val_sample
 
@@ -172,12 +172,12 @@ def notification_one(id):
     y_pred = list(map(float, y_pred))
     y_pred = y_pred[0]
     
-    return jsonify({"SK_ID_CURR" : id, "classification" : y_pred, "score" : probas})
+    return jsonify({"sk_id_curr" : id, "classification" : y_pred, "score" : probas})
 
 # API call for prediction of all customers listed
 @app.route('/notifications/')
 def notification_all():
-    customer_list = list(df['SK_ID_CURR'])
+    customer_list = list(df['sk_id_curr'])
     data = row_data(df, customer_list)
     y_pred, probas = prediction(pipeline, data)
 
@@ -192,7 +192,7 @@ def notification_all():
 
     notifications_lst = list()
     for k, v1, v2 in zip(customer_list, y_pred, probas_lst):
-        notifications_lst.append({"SK_ID_CURR" : k, "classification" : v1, "score": v2})
+        notifications_lst.append({"sk_id_curr" : k, "classification" : v1, "score": v2})
 
     return jsonify({"notifications":notifications_lst})
 
