@@ -237,7 +237,7 @@ def index():
 def result_one():
     if 'id' in request.args:
         id = int(request.args.get('id'))
-        r = requests.get(f'http://127.0.0.1:5000/notifications/{id}')
+        r = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/{id}')
         data = r.json()
         api_classif = data["classification"]
 
@@ -255,7 +255,7 @@ def result_one():
 
 @app.route('/result/all/')
 def result_all():
-    r = requests.get('http://127.0.0.1:5000/notifications/')
+    r = requests.get('https://loan-risk-notification.herokuapp.com/notifications/')
     data = r.json()
     notifications = data['notifications']
 
@@ -265,7 +265,7 @@ def result_all():
 def result_shap():
     if 'id' in request.args:
         id = int(request.args.get('id'))
-        shap_html = requests.get(f'http://127.0.0.1:5000/notifications/interpretability/{id}')
+        shap_html = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}')
 
         return render_template('result_shap.html', shap_plot=shap_html)
 
