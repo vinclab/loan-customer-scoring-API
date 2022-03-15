@@ -261,13 +261,13 @@ def result_all():
 
     return render_template('result_all.html', description=notifications)
 
-@app.route('/shap/')
-def result_shap():
-    if 'id' in request.args:
-        id = int(request.args.get('id'))
-        shap_html = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}')
+# @app.route('/shap/')
+# def result_shap():
+#     if 'id' in request.args:
+#         id = int(request.args.get('id'))
+#         shap_html = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}')
 
-        return render_template('result_shap.html', shap_plot=shap_html)
+#         return render_template('result_shap.html', shap_plot=shap_html)
 
 #___________________________________________________________________________________________
 
