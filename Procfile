@@ -1,1 +1,1 @@
-web: gunicorn --workers=3 app:app --preload --timeout 600
+web: gunicorn app:app --preload --timeout 600 --worker-class gevent
