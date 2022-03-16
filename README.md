@@ -7,4 +7,4 @@ It has been deployed with Flask and Heroku (with a postgreSQL database)
 
 Please, check out the master branch: https://github.com/vinclab/loan-customer-scoring-API/tree/master
 
-App link of this repository: https://loan-risk-notification.herokuapp.com/
+App link of this repository application: https://loan-risk-notification.herokuapp.com/
