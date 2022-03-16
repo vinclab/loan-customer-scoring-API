@@ -55,8 +55,8 @@ df = df[columns_lst]
 
 
 #ALGO_______________________________________________________________________________________
-# load the prediction model
 
+# load the prediction/sorrogate model
 if os.environ.get('DATABASE_URL') is None:
     pipeline = load(open('pipeline_scoring.pkl', 'rb'))
     explainer = load(open('pipeline_explainer.pkl', 'rb'))
